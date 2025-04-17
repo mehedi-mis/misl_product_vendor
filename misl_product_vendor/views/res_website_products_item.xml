@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <template id="products_item_inherit_vendor" inherit_id="website_sale.products_item"
+                  name="Products Item with Vendor">
+
+            <xpath expr="//*[hasclass('o_wsale_product_sub')]" position="after">
+                <t t-if="product.vendor_id">
+                    <div class="vendor_id text-muted small">
+                        Vendor:
+                        <span t-field="product.vendor_id"/>
+                    </div>
+                </t>
+            </xpath>
+
+        </template>
+
+        <template id="add_vendor_product_item_detail_inherit" inherit_id="website_sale.product"
+                  name="Products Details with Vendor">
+
+            <xpath expr="//div[@id='product_details']" position="inside">
+                <t t-if="product.vendor_id">
+                    <div class="vendor_id">
+                        Vendor:
+                        <span t-field="product.vendor_id"/>
+                    </div>
+                </t>
+            </xpath>
+
+        </template>
+    </data>
+</odoo>
