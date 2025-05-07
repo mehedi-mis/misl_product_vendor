@@ -15,8 +15,9 @@
     'category': 'product',
     'version': '18.0.1.0.0',
 
-    'depends': ['base', 'product', 'website', 'website_sale'],
+    'depends': ['base', 'web', 'contacts', 'stock', 'product', 'website', 'website_sale'],
     'data': [
+        'views/res_partner.xml',
         'views/res_product_template.xml',
 
         'views/res_website_products_item.xml',

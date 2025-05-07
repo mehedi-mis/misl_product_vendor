@@ -1,0 +1,33 @@
+<odoo>
+    <!-- Inherit the existing partner form view -->
+    <record id="res_partner_form_inherit" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <!-- Add or modify fields in the form view -->
+            <xpath expr="//field[@name='category_id']" position="after">
+                <!-- Add new fields here -->
+                <field name="is_ecommerce_vendor" widget="boolean_toggle"/>
+                <field name="is_customer" widget="boolean_toggle"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_e_customer_form" model="ir.actions.act_window">
+        <field name="name">eVendor</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="domain">[('is_ecommerce_vendor', '=', True)]</field>
+        <field name="context">{'search_default_is_ecommerce_vendor': 1,'res_partner_search_mode': 'supplier', 'default_is_company': True, 'default_is_ecommerce_vendor': 1}</field>
+        <field name="filter" eval="True"/>
+    </record>
+
+    <!-- Menu for eCommerce customer -->
+    <menuitem id="menu_orders_ecustomers"
+                name="eVendor"
+                action="misl_product_vendor.action_e_customer_form"
+                parent="website_sale.menu_orders"
+                sequence="5"/>
+
+</odoo>
